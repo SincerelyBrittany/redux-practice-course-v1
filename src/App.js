@@ -16,13 +16,6 @@ function App() {
   const addBy10 = () => {
     dispatch({ type: "ADDTEN", payload: 10 });
   };
-
-  // const handleChange = (event) => {
-  //   console.log(event.target.value);
-  //   const num = parseInt(event.target.value);
-  //   setCurrentCount(num);
-  // };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch({ type: "ADD", payload: parseInt(currentCount) });
@@ -37,10 +30,10 @@ function App() {
       <button onClick={addBy10}>Add By 10</button>
       <form onSubmit={handleSubmit}>
         <label>
-          Name:
+          Add amount here:
           <input
             type="text"
-            value={currentCount}
+            value={currentCount === 0 ? "" : currentCount}
             onChange={(e) => setCurrentCount(e.target.value)}
           />
         </label>
