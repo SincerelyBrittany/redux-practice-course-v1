@@ -7,7 +7,9 @@ function App() {
   const increment = () => {
     dispatch({ type: "INCREMENT" });
   };
-  const decrement = () => {};
+  const decrement = () => {
+    dispatch({ type: "DECREMENT" });
+  };
   return (
     <div className="App">
       <h1> Counter App </h1>
