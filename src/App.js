@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 
 function App() {
   const counter = useSelector((state) => state.counter);
-  const [currentCount, setCurrentCount] = React.useState(0);
+  const [currentCount, setCurrentCount] = useState(0);
   const dispatch = useDispatch();
   const increment = () => {
     dispatch({ type: "INCREMENT" });
@@ -14,17 +14,19 @@ function App() {
   };
 
   const addBy10 = () => {
-    dispatch({ type: "ADD", payload: 10 });
+    dispatch({ type: "ADDTEN", payload: 10 });
   };
 
-  const handleChange = (event) => {
-    console.log(event.target.value);
-    setCurrentCount(parseInt(event.target.value));
-  };
+  // const handleChange = (event) => {
+  //   console.log(event.target.value);
+  //   const num = parseInt(event.target.value);
+  //   setCurrentCount(num);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch({ type: "ADD", payload: parseInt(currentCount) });
+    setCurrentCount(0);
   };
   return (
     <div className="App">
@@ -36,7 +38,11 @@ function App() {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input type="text" value={currentCount} onChange={handleChange} />
+          <input
+            type="text"
+            value={currentCount}
+            onChange={(e) => setCurrentCount(e.target.value)}
+          />
         </label>
         <input type="submit" value="Submit" />
       </form>
