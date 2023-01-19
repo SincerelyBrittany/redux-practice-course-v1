@@ -11,13 +11,9 @@ const counterSlice = createSlice({
       state.counter--;
     },
     addbyTen(state, action) {
-      //   const counter = state.counter;
-      //   return { ...state.counter, counter: counter + action.payload };
       state.counter += action.payload;
     },
     handleSubmit(state, action) {
-      //   const counter = state.counter;
-      //   return { ...state.counter, counter: counter + action.payload };
       state.counter += action.payload;
     },
   },
