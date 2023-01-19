@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { actions } from "./store";
 import "./App.css";
 
 function App() {
@@ -7,25 +8,21 @@ function App() {
   const [currentCount, setCurrentCount] = useState(0);
   const dispatch = useDispatch();
   const increment = () => {
-    dispatch({ type: "INCREMENT" });
+    dispatch(actions.increment());
   };
   const decrement = () => {
-    dispatch({ type: "DECREMENT" });
+    dispatch(actions.decrement());
   };
 
-  const addBy10 = () => {
-    dispatch({ type: "ADDTEN", payload: 10 });
+  const addBy = () => {
+    dispatch(actions.addbyTen(10));
   };
-
-  // const handleChange = (event) => {
-  //   console.log(event.target.value);
-  //   const num = parseInt(event.target.value);
-  //   setCurrentCount(num);
-  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch({ type: "ADD", payload: parseInt(currentCount) });
+    dispatch(actions.handleSubmit(parseInt(currentCount)));
+
+    // dispatch({ type: "ADD", payload: parseInt(currentCount) });
   };
   return (
     <div className="App">
@@ -33,7 +30,7 @@ function App() {
       <h2> {counter}</h2>
       <button onClick={increment}>Increment</button>
       <button onClick={decrement}>Decrement</button>
-      <button onClick={addBy10}>Add By 10</button>
+      <button onClick={addBy}>Add By 10</button>
       <form onSubmit={handleSubmit}>
         <label>
           Name:

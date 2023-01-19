@@ -1,28 +1,30 @@
-// import redux
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-import { createStore } from "redux";
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: { counter: 0 },
+  reducers: {
+    increment(state) {
+      state.counter++;
+    },
+    decrement(state) {
+      state.counter--;
+    },
+    addbyTen(state, action) {
+      const counter = state.counter;
+      return { ...state.counter, counter: counter + action.payload };
+    },
+    handleSubmit(state, action) {
+      const counter = state.counter;
+      return { ...state.counter, counter: counter + action.payload };
+    },
+  },
+});
 
-const reducer = (state = { counter: 0 }, action) => {
-  // Reducer rules: Synchronous function and it should not mutate initial state
+export const actions = counterSlice.actions;
 
-  if (action.type === "INCREMENT") {
-    return { counter: state.counter + 1 };
-  }
-
-  if (action.type === "DECREMENT") {
-    return { counter: state.counter - 1 };
-  }
-
-  if (action.type === "ADDTEN") {
-    return { counter: state.counter + action.payload };
-  }
-
-  if (action.type === "ADD") {
-    return { counter: state.counter + action.payload };
-  }
-  return state;
-};
-
-const store = createStore(reducer);
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
 
 export default store;
